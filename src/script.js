@@ -53,8 +53,8 @@ window.addEventListener('resize', () => {
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(20, 5, 20);
+const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100);
+camera.position.set(20, 4, 10);
 scene.add(camera);
 
 // Controls
@@ -72,7 +72,6 @@ cameraFolder.open();
  * Renderer
  */
 
-
 const renderer = new THREE.WebGLRenderer({
 	canvas: canvas,
 	antialias: true,
@@ -81,7 +80,6 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
 
 /**
  * Environment Map
@@ -97,12 +95,12 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  */
 const backgroundGradient = {
 	colorTop: '#000000',
-	colorBottom: '#464d00',
+	colorBottom: '#0b0632',
 };
 
 const updateBackgroundGradient = () => {
-    const gradient = `linear-gradient(to bottom, ${backgroundGradient.colorTop}, ${backgroundGradient.colorBottom})`;
-    canvas.style.backgroundImage = gradient;
+	const gradient = `linear-gradient(to bottom, ${backgroundGradient.colorTop}, ${backgroundGradient.colorBottom})`;
+	canvas.style.backgroundImage = gradient;
 };
 
 const backgroundFolder = gui.addFolder('Background Gradient');
@@ -127,9 +125,9 @@ let currentMatcapIndex = 1; // Default to matcap 3.png (index 2)
 const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTextures[currentMatcapIndex] });
 
 const shaderMaterialParameters = {
-	color: '#00ff40',
+	color: '#b2b8d7',
 	transparent: true,
-	uLineWork: -0.8299,
+	uLineWork: -0.1164,
 };
 
 // Create the ShaderMaterial
@@ -210,14 +208,7 @@ let batmobile1 = null;
 let batmobile2 = null;
 let batmobile3 = null;
 
-gltfLoader.load('./batmobile_movie.glb', (gltf) => {
-	batmobile1 = gltf.scene;
-	updateMaterials(materialOptions.material); // Apply initial material
-	batmobile1.scale.set(0.5, 0.5, 0.5); // Scale down to 1%
-	scene.add(batmobile1);
-});
-
-gltfLoader.load('./batmobile.glb', (gltf) => {
+gltfLoader.load('./batwing.glb', (gltf) => {
 	batmobile2 = gltf.scene;
 	updateMaterials(materialOptions.material); // Apply initial material
 	batmobile2.scale.set(0.02, 0.02, 0.02); // Scale down to 1%
@@ -225,11 +216,19 @@ gltfLoader.load('./batmobile.glb', (gltf) => {
 	scene.add(batmobile2);
 });
 
+gltfLoader.load('./batmobile.glb', (gltf) => {
+	batmobile1 = gltf.scene;
+	updateMaterials(materialOptions.material); // Apply initial material
+	batmobile1.scale.set(0.02, 0.02, 0.02); // Scale down to 1%
+	batmobile1.position.set(5, -2, 0);
+	scene.add(batmobile1);
+});
+
 gltfLoader.load('./batmobiletumbler.glb', (gltf) => {
 	batmobile3 = gltf.scene;
 	updateMaterials(materialOptions.material); // Apply initial material
 	batmobile3.scale.set(0.25, 0.25, 0.25); // Scale as needed
-	batmobile3.position.set(0, -4, 0); // Position differently from the first Batmobile
+	batmobile3.position.set(-5, -2, 0); // Position differently from the first Batmobile
 	scene.add(batmobile3);
 });
 
@@ -241,7 +240,7 @@ const fontLoader = new FontLoader();
 // Load a font
 fontLoader.load('/fonts/BatmanForeverAlternate_Regular.json', (font) => {
 	const fontMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTextures[0] });
-	const textGeometry = new TextGeometry('Hello Bruce', {
+	const textGeometry = new TextGeometry('Wayne Ent.', {
 		font: font,
 		size: 1,
 		height: 0.2,
@@ -259,11 +258,10 @@ fontLoader.load('/fonts/BatmanForeverAlternate_Regular.json', (font) => {
 	textGeometry.translate(-textWidth / 2, 0, 0);
 
 	const textMesh = new THREE.Mesh(textGeometry, fontMaterial);
-	textMesh.position.set(-5, 0, -5); // Position the text in front of the camera
+	textMesh.position.set(0, 1, 0); // Position the text in front of the camera
 	textMesh.rotation.y = Math.PI / 4; // Rotate the text to face the camera
 	scene.add(textMesh);
 });
-
 
 /**
  * Object Visibility Controls
