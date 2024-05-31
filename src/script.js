@@ -94,7 +94,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  * GUI Controls for Background Gradient
  */
 const backgroundGradient = {
-	colorTop: '#000000',
+	colorTop: '#ffffff',
 	colorBottom: '#0b0632',
 };
 
@@ -121,11 +121,11 @@ const matcapTextures = [
 	textureLoader.load('textures/matcaps/4.png'),
 ];
 
-let currentMatcapIndex = 1; // Default to matcap 3.png (index 2)
+let currentMatcapIndex = 3; // Default to matcap 3.png (index 2)
 const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTextures[currentMatcapIndex] });
 
 const shaderMaterialParameters = {
-	color: '#b2b8d7',
+	color: '#6b6b6b',
 	transparent: true,
 	uLineWork: -0.1164,
 };
@@ -166,7 +166,7 @@ shaderMaterialFolder.open();
  * Toggle Material
  */
 const materialOptions = {
-	material: 'shader', // Default material
+	material: 'matcap', // Default material
 	matcap: currentMatcapIndex,
 };
 
