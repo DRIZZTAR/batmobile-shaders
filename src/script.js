@@ -7,6 +7,7 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import holographicVertexShader from './shaders/holographic/vertex.glsl';
 import holographicFragmentShader from './shaders/holographic/fragment.glsl';
+import { triplanarTexture } from 'three/examples/jsm/nodes/Nodes.js';
 
 /**
  * Base
@@ -52,7 +53,7 @@ window.addEventListener('resize', () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(20, 7, 7);
+camera.position.set(20, 6, 20);
 scene.add(camera);
 
 // Controls
@@ -119,10 +120,6 @@ const matcapTextures = [
 	textureLoader.load('textures/matcaps/2.png'),
 	textureLoader.load('textures/matcaps/3.png'),
 	textureLoader.load('textures/matcaps/4.png'),
-	textureLoader.load('textures/matcaps/5.png'),
-	textureLoader.load('textures/matcaps/6.png'),
-	textureLoader.load('textures/matcaps/7.png'),
-	textureLoader.load('textures/matcaps/8.png'),
 ];
 
 let currentMatcapIndex = 1; // Default to matcap 3.png (index 2)
@@ -265,6 +262,7 @@ fontLoader.load('/fonts/BatmanForeverAlternate_Regular.json', (font) => {
 	textMesh.rotation.y = Math.PI / 4; // Rotate the text to face the camera
 	scene.add(textMesh);
 });
+
 
 /**
  * Object Visibility Controls
