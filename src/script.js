@@ -63,9 +63,9 @@ controls.enableDamping = true;
 
 // GUI Camera Controls
 const cameraFolder = gui.addFolder('Camera Position');
-cameraFolder.add(camera.position, 'x', -50, 50, 0.1).name('Camera X');
-cameraFolder.add(camera.position, 'y', -50, 50, 0.1).name('Camera Y');
-cameraFolder.add(camera.position, 'z', -50, 50, 0.1).name('Camera Z');
+cameraFolder.add(camera.position, 'x', -50, 50, 0.0001).name('Camera X');
+cameraFolder.add(camera.position, 'y', -50, 50, 0.0001).name('Camera Y');
+cameraFolder.add(camera.position, 'z', -50, 50, 0.0001).name('Camera Z');
 cameraFolder.open();
 
 /**
