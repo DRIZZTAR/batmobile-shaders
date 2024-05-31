@@ -95,7 +95,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  */
 const backgroundGradient = {
 	colorTop: '#ffffff',
-	colorBottom: '#0b0632',
+	colorBottom: '#000000',
 };
 
 const updateBackgroundGradient = () => {
