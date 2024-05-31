@@ -14,6 +14,7 @@ import { triplanarTexture } from 'three/examples/jsm/nodes/Nodes.js';
  */
 // Debug
 const gui = new GUI();
+gui.close();
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl');
@@ -53,7 +54,7 @@ window.addEventListener('resize', () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(25, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(20, 6, 20);
+camera.position.set(20, 5, 20);
 scene.add(camera);
 
 // Controls
